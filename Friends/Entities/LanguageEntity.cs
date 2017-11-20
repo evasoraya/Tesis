@@ -15,10 +15,8 @@ namespace Friends.Entities
     public class LanguageEntity : Entity
     {
 
-
         public LanguageEntity(string tableName, string entityName) : base(tableName, entityName)
         {
-
         }
 
         public override void loadData()
@@ -28,88 +26,9 @@ namespace Friends.Entities
 
             foreach (long languageId in languages)
             {
-                Language dir = new Language(language_id: languageId, films: Database.getInstance().findfilmsByLang(languageId));
+                Language dir = new Language(language_id: languageId);
                 Global.LocalStorage.SaveLanguage(dir);
             }
-
-
-        }
-
-        public void Add(Language dir)
-        {
-
-            string name = dir.name;
-            string arr = "INSERT INTO Language (name) VALUES(@Name)";
-
-            try
-            {
-
-                NpgsqlConnection conn = Database.getInstance().Connection;
-
-                NpgsqlCommand cmd = new NpgsqlCommand(arr, conn);
-
-                var parameter = cmd.CreateParameter();
-                parameter.ParameterName = "Name";
-                parameter.Value = name;
-                cmd.Parameters.Add(parameter);
-
-                cmd.ExecuteNonQuery();
-                dir.language_id = Database.getInstance().getLast();
-
-                Global.LocalStorage.SaveLanguage(dir);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-
-        }
-
-
-        public Language getLanguageByID(int ID)
-        {
-            /*var results = from node in Global.LocalStorage.Actor_Accessor_Selector()
-                          where node.ID == ID
-                          select node;
-                          */
-
-            foreach (var language in Global.LocalStorage.Language_Accessor_Selector())
-            {
-                if (language.language_id == ID)
-                    return language;
-
-            }
-            return null;
-        }
-        public void RemoveLanguage(int ID)
-        {
-            var language = getLanguageByID(ID);
-
-            string arr = "DELETE FROM Language WHERE language_id = @ID";
-
-            try
-            {
-
-                NpgsqlConnection conn = Database.getInstance().Connection;
-
-                NpgsqlCommand cmd = new NpgsqlCommand(arr, conn);
-
-                var parameter = cmd.CreateParameter();
-                parameter.ParameterName = "ID";
-                parameter.Value = ID;
-                cmd.Parameters.Add(parameter);
-
-                cmd.ExecuteNonQuery();
-
-                Global.LocalStorage.RemoveCell(language.CellID);
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-
         }
     }
-
 }
