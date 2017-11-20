@@ -1,0 +1,102 @@
+// Graph Engine
+// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE.md file in the project root for full license information.
+//
+
+cell struct Actor{
+    long actor_id;
+    String first_name;
+    String last_name;
+    List <CellID> films;
+    
+}
+cell struct Address{
+    long address_id;
+    String address;
+    String district;
+    long postal_code;
+    String phone;
+    List<CellID> stores;
+
+}
+cell struct Category{
+    long category_id;
+    String name;
+    List<CellID> films;
+
+}
+cell struct City{
+    long city_id;
+    List<CellID> addresses;
+    String city;
+
+}
+cell struct Country{
+    long country_id;
+    String country;
+    List<CellID> cities;
+
+}
+cell struct Customer{
+    long customer_id;
+    String first_name;
+    String last_name;
+    String email;
+    List<CellID> rents;
+
+}
+cell struct Film{
+    long film_id;
+    String title;
+    String description; 
+    long release_year;
+    long length;
+    List<CellID> categories;
+    List<CellID> actors;
+    List<CellID> items;
+    
+}
+
+cell struct Item{
+    long item_id;
+    CellID film_id;
+    CellID store_id;
+    List<CellID> rents;
+
+}
+
+cell struct Language{
+    long language_id;
+    String name;
+    List<CellID> films;
+
+}
+
+cell struct Payment{
+    long payment_id;
+    CellID customer_id;
+    CellID staff_id;
+    CellID rental_id;
+    long amount;
+
+}
+cell struct Rental{
+    long rental_id;
+    String rental_date;
+    CellID item_id;
+    CellID customer_id;
+    String return_date;
+    CellID staff_id;
+}
+cell struct Staff{
+    long staff_id;
+    String first_name;
+    String last_name;
+    String email;
+}
+cell struct Store{
+    long store_id;
+    List<CellID> staffs;
+    List<CellID> items;
+    CellID manager_staff_id;
+}
