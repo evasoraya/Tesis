@@ -93,5 +93,23 @@ namespace Friends
             return answer;
         }
 
+
+        public long getLast()
+        {
+            string query = "SELECT LAST_INSERT_ID()";
+            long id = -1;
+
+            NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                id = dr.GetInt64(0);
+                break;
+            }
+
+            dr.Close();
+            return id;
+        }
     }
 }
