@@ -29,7 +29,7 @@ namespace Friends.Entities
             foreach (long addressId in addresses)
             {
               
-                Address mov = new Address(address_id: addressId, stores : Database.getInstance().findStoresByAddress(addressId));
+                Address mov = new Address(address_id: addressId);
                 Global.LocalStorage.SaveAddress(mov);
 
             }

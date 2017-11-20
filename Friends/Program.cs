@@ -334,52 +334,7 @@ namespace Friends
 
         }
 
-        private static void removeActor()
-        {
-            Console.WriteLine("Insertar el ID del actor: ");
-            string actorId = Console.ReadLine();
-            int id = Int32.Parse(actorId);
-            DataManager.getInstance().RemoveActor(id);
-        }
-
-        private static void removeCategory()
-        {
-            Console.WriteLine("Insertar el ID del director: ");
-            string directorId = Console.ReadLine();
-            int id = Int32.Parse(directorId);
-            DataManager.getInstance().RemoveCategory(id);
-        }
-
-        private static void removeFilm()
-        {
-            Console.WriteLine("Insertar el ID de la pelicula: ");
-            string movieId = Console.ReadLine();
-            int id = Int32.Parse(movieId);
-            DataManager.getInstance().RemoveFilm(id);
-        }
-
-        private static void addActor()
-        {
-
-            Console.WriteLine("Insertar el nombre del actor: ");
-            string actorName = Console.ReadLine();
-            Console.WriteLine("Insertar el apellido del actor: ");
-            string actorLast = Console.ReadLine();
-            Actor act = new Actor(first_name: actorName, last_name : actorLast);
-            DataManager.getInstance().AddActor(act);
-
-        }
-
-        private static void addCategory()
-        {
-
-            Console.WriteLine("Insertar el nombre de la categoria: ");
-            string directorName = Console.ReadLine();
-            Category dir = new Category(name: directorName);
-            DataManager.getInstance().AddCategory(dir);
-
-        }
-
+       
         private static void showMenu()
         {
             Console.WriteLine("A. Agregar un Actor");
@@ -394,39 +349,7 @@ namespace Friends
             Console.WriteLine("T. QUERY MAGICO");
 
         }
-
-        private static void addFilm()
-        {
-            Console.WriteLine("Insertar el nombre de la pelicula: ");
-            string MovieName = Console.ReadLine();
-
-            Console.WriteLine("Insertar el año de la pelicula: ");
-            long MovieYear = long.Parse(Console.ReadLine());
-
-            Console.WriteLine("Insertar el duracion de la pelicula: ");
-            long MovieLength = long.Parse(Console.ReadLine());
-
-            Console.WriteLine("Insertar el Descripcion de la pelicula: ");
-            string MovieDescription = Console.ReadLine();
-            
-
-
-            Console.WriteLine("Insertar el numero de actores a registrar para la pelicula: ");
-            String cant = Console.ReadLine();
-
-            Console.WriteLine("Insertar ids de los actores de la pelicula: ");
-            List<long> MovActors = new List<long>();
-            for (int i=0; i < Int32.Parse(cant); i++)
-            {
-                String idActor = Console.ReadLine();
-                MovActors.Add(Int32.Parse(idActor));
-            }
-           
-            Film mov = new Film(title: MovieName, release_year: MovieYear, length: MovieLength, description : MovieDescription, actors: MovActors );
-            
-            DataManager.getInstance().AddFilm(mov);
-        }
-
+        
     }
 
 }
