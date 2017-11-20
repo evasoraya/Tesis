@@ -31,7 +31,12 @@ namespace WPFApp
             InitializeComponent();
             vm = new ViewModel();
             this.DataContext = vm;
+
+            this.RespuestaM.Columns.Add(new DataGridTextColumn { Header = "Eva Besha" });
+            
+
         }
-        
+
+       
     }
 }
