@@ -9,7 +9,7 @@ namespace Friends.Parsing
     public class SelectFields
     {
 
-        public List<string> getFields(string query)
+        public static List<string> getFields(string query)
         {
             List<string> fields = new List<string>();
             String txtFields = StringHelper.findTextBetweenTwoStrings(query, "select", "from");

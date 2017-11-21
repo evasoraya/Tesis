@@ -32,11 +32,22 @@ namespace WPFApp
             vm = new ViewModel();
             this.DataContext = vm;
 
-            this.RespuestaM.Columns.Add(new DataGridTextColumn { Header = "Eva Besha" });
-            
+          
 
         }
 
-       
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> col = Friends.Parsing.SelectFields.getFields(this.consulta.Text);
+            this.RespuestaM.Columns.Clear();
+
+            foreach (string name in col)
+            {
+                this.RespuestaM.Columns.Add(new DataGridTextColumn
+                {
+                    Header = name
+                });
+            }
+        }
     }
 }
