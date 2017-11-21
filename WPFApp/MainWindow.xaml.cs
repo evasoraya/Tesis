@@ -25,26 +25,34 @@ namespace WPFApp
     {
 
         ViewModel vm;
+        List<DataGrid> grids = new List<DataGrid>();
 
         public MainWindow()
         {
             InitializeComponent();
             vm = new ViewModel();
             this.DataContext = vm;
+            
+            grids.Add(this.RespuestaM);
+            grids.Add(this.RespuestaP);
+            grids.Add(this.RespuestaGEP);
+            grids.Add(this.RespuestaGEM);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            List<string> col = Friends.Parsing.SelectFields.getFields(this.consulta.Text);
-            this.RespuestaM.Columns.Clear();
+           List<string> col = Friends.Parsing.SelectFields.getFields(this.consulta.Text);
+           foreach(DataGrid d in grids) d.Columns.Clear();
 
-            foreach (string name in col)
+            foreach (DataGrid dg in grids)
             {
-                this.RespuestaM.Columns.Add(new DataGridTextColumn
+                foreach (string name in col)
                 {
-                    Header = name
-                });
-            }
+                    dg.Columns.Add(new DataGridTextColumn{
+                        Header = name
+                    });
+                }
+            }          
         }
     }
 }
