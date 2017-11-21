@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using WPFApp.VM;
+using Friends.Parsing;
 
 namespace WPFApp
 {
@@ -41,8 +42,18 @@ namespace WPFApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           List<string> col = Friends.Parsing.SelectFields.getFields(this.consulta.Text);
-           foreach(DataGrid d in grids) d.Columns.Clear();
+
+            vm.LimpiarError();
+
+            String query = this.consulta.Text;
+            if (!Validator.checkValidSql(query))
+            {
+                vm.MostrarError();
+                return;
+            }
+
+            List<string> col = Friends.Parsing.SelectFields.getFields(query);
+            foreach(DataGrid d in grids) d.Columns.Clear();
 
             foreach (DataGrid dg in grids)
             {
