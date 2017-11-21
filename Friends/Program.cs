@@ -331,9 +331,7 @@ namespace Friends
             stopwatch.Stop();
             Console.WriteLine("Respuesta = " + answerl);
             Console.WriteLine("Tiempo tomado = " + stopwatch.ElapsedMilliseconds);
-
         }
-
        
         private static void showMenu()
         {

@@ -14,12 +14,15 @@ namespace WPFApp.VM
 
         public ViewModel()
         {
-            movie = new MovieModel();
+            queryError = "Hubo un error ejecutando el query...";
         }
 
-        private MovieModel movie;
+        private String queryError;
 
-        public MovieModel Movie { get => movie; set => movie = value; }
-
+        public String QueryError
+        {
+            get { return queryError; }
+            set { queryError = value;  }
+        }
     }
 }
